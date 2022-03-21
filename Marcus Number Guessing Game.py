@@ -1,12 +1,14 @@
 import random
 from statistics import median, mean, mode
 
+attempt_number = []
+
 print("Welcome to the game!")
 name = input("Hello, what is your name?: ")
 print("Welcome {}!".format(name))
 
 def start_game():
-    attempts = []
+    attempts = 1
     correct_number = random.randint(1,10)
     guessed_number = 0 
     while correct_number != guessed_number:
@@ -28,19 +30,23 @@ def start_game():
                 print("Too low! Try again: ")
                 continue 
     else: 
+            attempt_number.append(attempts)
             print("You guessed it, {}! The number was {} and it took you {} tries.".format(name, guessed_number, attempts))
     return attempts
-    
+
+start_game()
+
+
 choice = "yes"
 while choice == "yes":
     choice = input("\nWant to play again? (Yes/No): ").lower()
-    attempts.append(new_game)
     if choice == "yes":
         new_game = start_game() 
 else:    
     print("\nGoodbye for now, {}!\n".format(name))
-    print(f"Your average score is {mean_attempts}, your median value is {median_attempts} and your mode value is {mode_attempts}.")   
+
         
-mean_attempts = mean(attempts)
-mode_attempts = mode(attempts)
-median_attempts = median(attempts)    
+mean_attempts = mean(attempt_number)
+mode_attempts = mode(attempt_number)
+median_attempts = median(attempt_number)
+print(f"Your average score is {mean_attempts}, your median value is {median_attempts} and your mode value is {mode_attempts}.")    
